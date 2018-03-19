@@ -57,6 +57,7 @@ namespace DavidsCatfishHouse.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -71,6 +72,7 @@ namespace DavidsCatfishHouse.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+                //return RedirectToRoute("Index","Shift");
             }
 
             // This doesn't count login failures towards account lockout
@@ -88,6 +90,7 @@ namespace DavidsCatfishHouse.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+                    //return RedirectToRoute("Index", "Shifts");
             }
         }
 

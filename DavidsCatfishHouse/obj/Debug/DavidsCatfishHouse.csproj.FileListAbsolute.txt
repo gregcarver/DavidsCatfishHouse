@@ -15,7 +15,6 @@ c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Micr
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AspNet.Identity.Core.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AspNet.Identity.Owin.dll
-c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.Owin.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.Owin.Host.SystemWeb.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.Owin.Security.Cookies.dll
@@ -36,7 +35,6 @@ c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Syst
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.Web.WebPages.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.Web.WebPages.Razor.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\WebGrease.dll
-c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.Web.Helpers.xml
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.Web.Mvc.xml
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.Web.Optimization.xml
@@ -69,3 +67,20 @@ c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debu
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.csproj.CoreCompileInputs.cache
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.dll
 c:\users\greg carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.pdb
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\PhoneNumbers.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Twilio.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\TwilioFluent.TwiML.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Twilio.xml
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\TwilioFluent.TwiML.xml
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Twilio.AspNet.Common.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Twilio.AspNet.Mvc.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\TwilioFluent.Mvc3.dll
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\TwilioFluent.Mvc3.xml
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.Migrations.connectionstring.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.csproj.GenerateResource.Cache
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.Migrations._event.resources

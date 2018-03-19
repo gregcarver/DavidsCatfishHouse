@@ -29,5 +29,12 @@ namespace DavidsCatfishHouse.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DavidsCatfishHouse.Models.ShiftChangeRequest> ShiftChangeRequests { get; set; }
+
+        public System.Data.Entity.DbSet<DavidsCatfishHouse.Models.Availability> Availabilities { get; set; }
+
+        public System.Data.Entity.DbSet<DavidsCatfishHouse.Models.ShiftChange> ShiftChanges { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }

@@ -64,6 +64,24 @@ namespace DavidsCatfishHouse.Models
 
     public class RegisterViewModel
     {
+        //public RegisterViewModel(string employeeName, int myProperty, Shift shift, string email, string password, string confirmPassword)
+        //{
+        //    EmployeeName = employeeName;
+        //    MyProperty = myProperty;
+        //    Shift = shift;
+        //    Email = email;
+        //    Password = password;
+        //    ConfirmPassword = confirmPassword;
+        //}
+
+        public string EmployeeName { get; set; }
+
+        public int MyProperty { get; set; }
+
+        
+
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -109,4 +127,6 @@ namespace DavidsCatfishHouse.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+        
 }

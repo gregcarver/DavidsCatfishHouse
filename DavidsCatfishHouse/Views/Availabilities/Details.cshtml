@@ -1,0 +1,66 @@
+﻿@model DavidsCatfishHouse.Models.Availability
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Availability</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TuesdayShift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TuesdayShift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WednesdayShift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WednesdayShift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThursdayShift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThursdayShift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FridayShift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FridayShift)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaturdayShift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaturdayShift)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

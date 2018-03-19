@@ -1,0 +1,219 @@
+﻿@model DavidsCatfishHouse.Models.ShiftChangeRequest
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="col-lg-6" style="float: left">
+            <div>
+
+                <div>
+                    <address>
+                        219 Belleville Ave<br />
+                        Brewton, AL 36426<br />
+                        <abbr title="Office Phone">P:</abbr>
+                        (251) 867-5418<br />
+                        @*Email: gregory.carverprovalus@gmail.com*@
+                    </address>
+                </div>
+
+                @*<address>
+                        123 Main Street<br />
+                        Brewton, AL 36426<br />
+                        <abbr title="Office Phone">P:</abbr>
+                        251.867.5418
+                    </address>*@
+            </div>
+        </div>
+        <div class="col-lg-6" style="float: right">
+            <div class="col-lg-10">
+                <div class="form-horizontal">
+                    <h4>Send a message</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CurrentEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CurrentEmployee, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CurrentEmployee, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NewEmployee, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NewEmployee, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", @style = "height: 250px" } })
+                            @*@Html.TextAreaFor(model => model.Message, 10, 80, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @*@Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "long-text-editor" } })*@
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <p><button href="@Url.Action("Index", "Home")" class="btn btn-default btn-group-sm" value="submit" style="float:left">Submit &raquo;</button></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<div>
+                        @Html.ActionLink("Back to Home Page", "Index", "Home")
+                    </div>*@
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+
+
+
+@*@Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CurrentEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CurrentEmployee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentEmployee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NewEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NewEmployee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NewEmployee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @section scriptz{
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js" media-"print"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+                <div class="row">
+
+                    <div class="form-group col-lg-12">
+
+                        <div class="input-group date">
+                            <span style="text-align:center" class="col-lg-2">Current Employee</span>
+                            <input type="text" id="txtStart" class="form-control text-box single-line col-lg-8" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+
+                        <div class="input-group date">
+                            <span style="text-align:center" class="col-lg-2">New Employee</span>
+                            <input type="text" id="txtStart" class="form-control text-box single-line col-lg-8" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group col-lg-12">
+
+                        <div class="input-group date" id="dtp1">
+                            <span style="text-align:center" class="col-lg-2">Start</span>
+                            <input type="text" id="txtStart" class="form-control text-box single-line col-lg-8" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+
+                        <div class="input-group date" id="dtp2">
+                            <span class="col-lg-2" style="text-align:center">End</span>
+                            <input type="text" id="txtEnd" class="form-control text-box single-line col-lg-10" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $('#dtp1, #dtp2').datetimepicker({
+                        format: 'MM/DD/YYYY HH:mm A'
+                    });
+                </script>
+
+            }
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+            <input type="submit" value="Send"/>
+            <input type="reset" value="Reset" />
+
+    </div>*@
+
+
+
