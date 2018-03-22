@@ -2,6 +2,8 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-image: url('../Images/calmwater.jpg');
+    
+    font-family: cursive;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -85,4 +87,41 @@ a {
 }
 .fc-unthemed td.fc-today {
     background-color: #0ddc6a;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: #FFEBCD;
+}
+label {
+    color: #FFEBCD;
+}
+.modal-footer {
+    padding: 19px 20px 20px;
+    margin-top: 0px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+#dataTable_info {
+    color: #FFEBCD;
+}
+#dataTable_next, #dataTable_previous {
+    color: #FFEBCD;
+}
+.fc-sun{
+    background-color:grey !important;
+    opacity:0.5;
+}
+.fc-mon {
+    background-color: grey !important;
+    opacity: 0.5;
+}
+.fc-center{
+    font-family:cursive;
+}
+@media only screen and (max-width: 600px) {
+    #zoomControl {
+        zoom:40%;
+    }
+}
+.sorting, .sorting_asc, .sorting_desc {
+    background: none;
 }

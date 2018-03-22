@@ -3,24 +3,355 @@
 }
 
 @*<div class="jumbotron col-md-12" style="background-color:#1261ae; margin-top:10%;border-radius:50%;">
-    <div >
-        
+        <div >
+
+        </div>
+
+    </div>*@
+@*<img class="col-md-12" style="border-radius:12%; margin-top:5%;" src="~/Images/Davids-Catfish-House_Header1.jpg" />*@
+
+
+<div id="calender"></div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span id="eventTitle"></span></h4>
+            </div>
+            <div class="modal-body" style="color: #FFEBCD;background:url(../Images/wood.jpg)">
+                @*<button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                    <span class="glyphicon-remove"></span>Remove
+                </button>
+                <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+                    <span class="glyphicon-pencil"></span>Edit
+                </button>*@
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-    
-</div>*@
-<img class="col-md-12" style="border-radius:12%; margin-top:10%;margin-bottom:5%" src="~/Images/Davids-Catfish-House_Header1.jpg" />
-<div class="row">
+</div>
+
+<div id="myModalSave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Save Event</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal col-md-12 ">
+                    <input type="hidden" id="hdEventId" value="0" />
+                    <div class="form-group">
+                        <label>Employee</label>
+                        <input type="text" id="txtSubject" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Start of Shift</label>
+                        <div class="input-group date" id="dtp1" style="margin-left:2.65%">
+                            <input type="text" id="txtStart" class="form-group" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    @*fullday checkbox*@
+                    @*<div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="ckIsFullDay" checked="checked" />Is Full Day event</label>
+                            </div>
+                        </div>*@
+                    <div class="form-group">
+                        <label>End of Shift</label>
+                        <div class="input-group date" id="dtp2" style="margin-left:2.65%">
+                            <input type="text" id="txtEnd" class="form-group" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Instructions</label>
+                        <textarea id="txtDescription" rows="3" class="form-control"></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Employee Color</label>
+                        <select id="addThemeColor" class="form-control">
+                            <option value="">Default</option>
+                            <option value="red">Red</option>
+                            <option value="orange">Orange</option>
+                            <option value="purple">Purple</option>
+                            <option value="#0ddc6a">Green</option>
+                            <option value="#29CFF1">Light Blue</option>
+                        </select>
+                    </div>
+                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js" media-"print"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            var selectedEvent = null;
+            FetchEventAndRenderCalendar();
+            function FetchEventAndRenderCalendar() {
+                var events = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/Shift/GetShifts",
+                    success: function (data) {
+                        $.each(data, function (i, v) {
+                            events.push({
+                                Id: v.Id,
+                                title: v.Subject,
+                                description: v.Description,
+                                start: moment(v.Start).subtract(2, 'h'),
+                                end: v.End != null ? moment(v.End).subtract(2, 'h') : null,
+                                color: v.ThemeColor,
+                                allDay: v.IsFullDay,
+
+                            });
+
+                        })
+                        GenerateCalendar(events);
+                        console.log(events);
+                    },
+                    err: function (error) {
+                        alert('failed');
+                    }
+
+
+                })
+            }
+            console.log(moment(new Date()).local().format());
+
+
+            function GenerateCalendar(events) {
+                $('#calender').fullCalendar('destroy');
+
+                $('#calender').fullCalendar({
+
+                    contentHeight: 600,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay,agenda'
+                    },
+                    eventLimit: true,
+                    eventColor: '#0ddc6a',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                        selectedEvent = calEvent;
+                        $('#myModal #eventTitle').text(calEvent.title);
+                        var $description = $('<div/>');
+                        $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("MM-DD-YYYY HH:mm a")));
+                        console.log(calEvent.start.format("MM-DD-YYYY HH:mm a"));
+                        if (calEvent.end != null) {
+                            $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("MM-DD-YYYY HH:mm a")));
+                        }
+                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                        $('#myModal #pDetails').empty().html($description);
+                        $('#myModal').modal();
+                    },
+                    selectable: true,
+                    select: function (start, end) {
+                        selectedEvent = {
+                            Id: 0,
+                            title: '',
+                            description: '',
+                            start: start,
+                            end: end,
+                            allDay: false,
+                            color: ''
+                        };
+                        openAddEditForm();
+                        $('#calendar').fullCalendar('unselect');
+                    },
+                    editable: false,
+                    //eventDrop: function (event) {
+                    //    var data = {
+                    //        Id: event.Id,
+                    //        Subject: event.title,
+                    //        Start: event.start.format('MM/DD/YYYY HH:mm A'),
+                    //        End: event.end != null ? event.end.format('MM/DD/YYYY HH:mm A') : null,
+                    //        Description: event.description,
+                    //        ThemeColor: event.color,
+                    //        IsFullDay: event.allDay
+                    //    };
+                    //    SaveEvent(data);
+                    //}
+                })
+            }
+            //$('#btnEdit').click(function () {
+            //    openAddEditForm();
+            //})
+            //$('#btnDelete').click(function () {
+            //    if (selectedEvent != null && confirm('Are you sure?')) {
+            //        $.ajax({
+            //            type: "POST",
+            //            url: '/Shift/DeleteEvent',
+            //            data: { 'Id': selectedEvent.Id },
+            //            success: function (data) {
+            //                if (data.status) {
+            //                    FetchEventAndRenderCalendar();
+            //                    $('#myModal').modal('hide');
+            //                }
+
+            //            },
+            //            error: function () {
+            //                alert('Failed');
+            //            }
+            //        })
+            //    }
+
+            //})
+
+            //$('#dtp1, #dtp2').datetimepicker({
+            //    format: 'MM/DD/YYYY HH:mm A'
+            //});
+            //$('#ckIsFullDay').change(function () {
+            //    if ($(this).is(':checked')) {
+            //        $('#divEndDate').hide();
+
+            //    }
+            //    else {
+            //        $('#divEndDate').show();
+            //    }
+            //});
+            //function openAddEditForm() {
+            //    if (selectedEvent != null) {
+            //        $('#hdEventId').val(selectedEvent.Id);
+            //        $('#txtSubject').val(selectedEvent.title);
+            //        $('#txtStart').val(selectedEvent.start.format('MM/DD/YYYY HH:mm A'));
+            //        $('#ckIsFullDay').prop("checked", selectedEvent.allDay || false);
+            //        $('#ckIsFullDay').change();
+            //        $('#txtEnd').val(selectedEvent.end != null ? selectedEvent.end.format('MM/DD/YYYY HH:mm A') : '');
+            //        $('#txtDescription').val(selectedEvent.description);
+            //        $('#addThemeColor').val(selectedEvent.color);
+            //    }
+            //    else {
+            //        alert("Must be admin to access")
+            //    }
+            //    $('#myModal').modal('hide');
+            //    $('#myModalSave').modal();
+            //}
+
+            //$('#btnSave').click(function () {
+            //    if ($('#txtSubject').val().trim() == "") {
+            //        alert('Subject Required');
+            //        return;
+            //    }
+            //    if ($('#txtStart').val().trim() == "") {
+            //        alert('Shift start Required');
+            //        return;
+            //    }
+            //    if ($('#ckIsFullDay').is(':checked') == false && $('#txtEnd').val().trim() == "") {
+            //        alert('Shift end required');
+            //        return;
+            //    }
+            //    else {
+            //        var startDate = moment($('#txtStart').val(), "MM/DD/YYYY HH:mm A").toDate();
+            //        var endDate = moment($('#txtEnd').val(), "MM/DD/YYYY HH:mm A").toDate();
+            //        if (startDate > endDate) {
+            //            alert('Invalid end date');
+            //            return;
+            //        }
+            //    }
+                //var data = {
+                //    Id: $('#hdEventId').val(),
+                //    Subject: $('#txtSubject').val().trim(),
+                //    Start: $('#txtStart').val().trim(),
+                //    End: $('#ckIsFullDay').is(':checked') ? null : $('#txtEnd').val().trim(),
+                //    Description: $('#txtDescription').val(),
+                //    ThemeColor: $('#addThemeColor').val(),
+                //    IsFullDay: $('#ckIsFullDay').is(':checked')
+                //}
+            //    SaveEvent(data);
+
+            //})
+            //function SaveEvent(data) {
+            //    $.ajax({
+            //        type: "POST",
+            //        url: '/Shift/SaveEvent',
+            //        data: data,
+            //        success: function (data) {
+            //            if (data.status) {
+            //                FetchEventAndRenderCalendar();
+            //                $('#myModalSave').modal('hide');
+            //            }
+
+            //        },
+            //        error: function () {
+            //            alert('Failed');
+            //        }
+            //    })
+
+
+
+            //}
+        })
+    </script>
+}
+@*<a href="/Sms/SendSms"><button class="btn-danger" id="shiftBtn" style="font-size:18px;">Send SMS</button></a>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@**<div class="row">
     <div class="col-md-6">
 
-        @*<h1 style="font-family:cursive; margin-bottom:20%;text-align:center ;color:#0ddc6a">View Work Schedule</h1>*@
         <span style="font-family:cursive;color:#FFEBCD"><a style="background-color:#1261ae;color:#FFEBCD; font-size:24px;width:100%;margin-bottom:5%" class="btn btn-default col-md-12" href="/Shift/">Schedule &raquo;</a></span>
     </div>
     <div class="col-md-6">
-        
-        @*<h1 style=" font-family:cursive; margin-bottom:20%; text-align:center; color:#0ddc6a">Edit Availability</h1>*@
-        <span ><a style="font-family:cursive;background-color:#1261ae;color:#FFEBCD;font-size:24px;width:100%;margin-bottom:5%" class="btn btn-default col-md-12" href="/Availabilities/">Availability &raquo;</a></span>
+
+        <span><a style="font-family:cursive;background-color:#1261ae;color:#FFEBCD;font-size:24px;width:100%;margin-bottom:5%" class="btn btn-default col-md-12" href="/Availabilities/">Availability &raquo;</a></span>
     </div>
-    @*<div class="col-md-2">
-        
-    </div>*@
-</div>
+
+</div>*@

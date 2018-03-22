@@ -9,21 +9,21 @@
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><span id="eventTitle"></span></h4>
             </div>
-            <div class="modal-body">
-                <button id="btnDelete" class="btn btn-default btn-sm pull-right">
-                    <span class="glyphicon-remove"></span>Remove
+            <div class="modal-body" style="color: #FFEBCD;background:url(../Images/wood.jpg)">
+                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                    <span class="glyphicon glyphicon-remove">Remove</span>
                 </button>
-                <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+                <button id="btnEdit" class="btn btn-success btn-sm pull-right" style="margin-right:5px;">
                     <span class="glyphicon-pencil"></span>Edit
                 </button>
                 <p id="pDetails"></p>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -32,11 +32,11 @@
 <div id="myModalSave" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Save Event</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background:url(../Images/wood.jpg)">
                 <form class="form-horizontal col-md-12 ">
                     <input type="hidden" id="hdEventId" value="0" />
                     <div class="form-group">
@@ -73,22 +73,22 @@
 
                     </div>
                     <div class="form-group">
-                        <label>Employee Color</label>
+                        <label>Employee Role</label>
                         <select id="addThemeColor" class="form-control">
                             <option value="">Default</option>
-                            <option value="red">Red</option>
-                            <option value="orange">Orange</option>
-                            <option value="purple">Purple</option>
-                            <option value="#0ddc6a">Green</option>
-                            <option value="#29CFF1">Light Blue</option>
+                            <option value="red">Server</option>
+                            <option value="orange">Hostess</option>
+                            <option value="purple">Drive-Thru</option>
+                            <option value="#0ddc6a">Kitchen</option>
+                            <option value="#29CFF1">Manager</option>
                         </select>
                     </div>
                     <button type="button" id="btnSave" class="btn btn-success">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-footer" style="background: url('../Images/calmwater.jpg');">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -123,27 +123,32 @@
                                 Id: v.Id,
                                 title: v.Subject,
                                 description: v.Description,
-                                start: moment(v.Start),
-                                end: v.End != null ? moment(v.End) : null,
+                                start: moment(v.Start).subtract(2, 'h'),
+                                end: v.End != null ? moment(v.End).subtract(2, 'h') : null,
                                 color: v.ThemeColor,
-                                allDay: v.IsFullDay
+                                allDay: v.IsFullDay,
+
                             });
+
                         })
                         GenerateCalendar(events);
+                        console.log(events);
                     },
                     err: function (error) {
                         alert('failed');
                     }
-             
-                    
+
+
                 })
             }
-
+            console.log(moment(new Date()).local().format());
 
 
             function GenerateCalendar(events) {
                 $('#calender').fullCalendar('destroy');
+
                 $('#calender').fullCalendar({
+
                     contentHeight: 600,
                     defaultDate: new Date(),
                     timeFormat: 'h(:mm)a',
@@ -160,10 +165,11 @@
                         $('#myModal #eventTitle').text(calEvent.title);
                         var $description = $('<div/>');
                         $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("MM-DD-YYYY HH:mm a")));
+                        console.log(calEvent.start.format("MM-DD-YYYY HH:mm a"));
                         if (calEvent.end != null) {
                             $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("MM-DD-YYYY HH:mm a")));
                         }
-                        $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                        $description.append($('<p/>').html('<b>Special Instructions:</b>' + calEvent.description));
                         $('#myModal #pDetails').empty().html($description);
                         $('#myModal').modal();
                     },
@@ -192,7 +198,9 @@
                             ThemeColor: event.color,
                             IsFullDay: event.allDay
                         };
+                        console.log(data)
                         SaveEvent(data);
+                        console.log(data)
                     }
                 })
             }
@@ -249,23 +257,7 @@
                 $('#myModal').modal('hide');
                 $('#myModalSave').modal();
             }
-            //function openAddEditForm2() {
-            //    if (selectedEvent != null) {
-            //        $('#hdEventId').val(selectedEvent.Id);
-            //        $('#txtSubject').val(selectedEvent.title);
-            //        $('#txtStart').val(selectedEvent.start.format('MM/DD/YYYY HH:mm A'));
-            //        $('#ckIsFullDay').prop("checked", selectedEvent.allDay || false);
-            //        $('#ckIsFullDay').change();
-            //        $('#txtEnd').val(selectedEvent.end != null ? selectedEvent.end.format('MM/DD/YYYY HH:mm A') : '');
-            //        $('#txtDescription').val(selectedEvent.description);
-            //        $('#addThemeColor').val(selectedEvent.color);
-            //    }
-            //    $('#myModal').modal('hide');
-            //    $('#myModalSave').modal();
-            //}
-            //$('#shiftBtn').click(function () {
-            //    openAddEditForm2();
-            //})
+
             $('#btnSave').click(function () {
                 if ($('#txtSubject').val().trim() == "") {
                     alert('Subject Required');
@@ -275,10 +267,10 @@
                     alert('Shift start Required');
                     return;
                 }
-                if ($('#ckIsFullDay').is(':checked') == false && $('#txtEnd').val().trim() == "") {
-                    alert('Shift end required');
-                    return;
-                }
+                //if ($('#ckIsFullDay').is(':checked') == false && $('#txtEnd').val().trim() == "") {
+                //    alert('Shift end required');
+                //    return;
+                //}
                 else {
                     var startDate = moment($('#txtStart').val(), "MM/DD/YYYY HH:mm A").toDate();
                     var endDate = moment($('#txtEnd').val(), "MM/DD/YYYY HH:mm A").toDate();
@@ -294,8 +286,9 @@
                     End: $('#ckIsFullDay').is(':checked') ? null : $('#txtEnd').val().trim(),
                     Description: $('#txtDescription').val(),
                     ThemeColor: $('#addThemeColor').val(),
-                    IsFullDay: $('#ckIsFullDay').is(':checked')
+                    //IsFullDay: $('#ckIsFullDay').is(':checked')
                 }
+                console.log(data)
                 SaveEvent(data);
 
             })
@@ -315,16 +308,28 @@
                         alert('Failed');
                     }
                 })
-                    @*.then({
-                        @Html.Action("SendSms")
-                    });*@
-                
-                
             }
+            //function SaveEvent2(data) {
+            //    $.ajax({
+            //        type: "PUT",
+            //        url: 'http://danielguelzo-001-site13.ftempurl.com/Shift/SaveEvent',
+            //        data: data,
+            //        success: function (data) {
+            //            if (data.status) {
+            //                FetchEventAndRenderCalendar();
+            //                $('#myModalSave').modal('hide');
+            //            }
+
+            //        },
+            //        error: function () {
+            //            alert('Failed');
+            //        }
+            //    })
+            //}
         })
     </script>
 }
-    <a href="/Sms/SendSms"><button class="btn-danger" id="shiftBtn" style="font-size:18px;">Send SMS</button></a>
+@*<a href="/Sms/SendSms"><button class="btn-danger" id="shiftBtn" style="font-size:18px;">Send SMS</button></a>*@
 
 
 

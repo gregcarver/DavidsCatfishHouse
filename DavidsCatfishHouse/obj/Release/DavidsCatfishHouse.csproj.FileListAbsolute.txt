@@ -77,10 +77,9 @@ C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Micr
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Microsoft.AI.Web.xml
-C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.connectionstring.resources
-C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations._event.resources
-C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csproj.GenerateResource.Cache
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csproj.CoreCompileInputs.cache
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.dll
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.pdb
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csprojResolveAssemblyReference.cache
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.fettuci.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csproj.GenerateResource.Cache

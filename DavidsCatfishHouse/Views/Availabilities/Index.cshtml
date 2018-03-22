@@ -3,62 +3,97 @@
 @{
     ViewBag.Title = "Index";
 }
-<span class="col-md-4"></span>
-<h2  class="col-md-4" style="margin-top:5%;margin-bottom:5%; color: #0ddc6a; background-color:#1261ae;text-align:center;line-height:50px"> <span id="catfishIMG"></span>Employee Availability</h2>
+@*<span class="col-md-12"></span>*@
+@*<h2 class="col-md-12" style="margin-top:5%;margin-bottom:5%; color: #0ddc6a; background-color:#1261ae;text-align:center;line-height:50px"> <span id="catfishIMG"></span>Employee Availability</h2>*@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+@section avail{
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-    
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
-<table class="table" style="margin-top:5%;">
-    <tr id="avTable" style="font-family:cursive;color: #FFEBCD;font-size:20px;">
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TuesdayShift)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WednesdayShift)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThursdayShift)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FridayShift)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SaturdayShift)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr style="background-color:transparent; color:#FFEBCD;font-size:20px; font-family:cursive;" >
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TuesdayShift)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WednesdayShift)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThursdayShift)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FridayShift)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SaturdayShift)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
 }
 
-</table>
-<button class="col-md-4" style="font-size:18px;line-height:50px;text-align:center;margin-top:5%;margin-bottom:5%;color: #0ddc6a;background-color:#1261ae;width:20%;float:right;"><span id="catfishIMG"></span>@Html.ActionLink("Add Availability", "Create")</button>
+    <div class="row">
+        <div class="col-md-12" id="zoomControl" style="margin-top:5%;">
+            <table id="dataTable" class="table" >
+                <thead>
+                    <tr id="avTable" style="font-family:cursive;color: #FFEBCD;font-size:20px;">
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.EmployeeName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TuesdayShift)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WednesdayShift)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ThursdayShift)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FridayShift)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SaturdayShift)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+        {
+            <tr style="background-color:transparent; color:#FFEBCD;font-size:20px; font-family:cursive;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TuesdayShift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WednesdayShift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThursdayShift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FridayShift)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaturdayShift)
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        }
+    }
+                    @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        }
+    }
+
+        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+
+                </td>
+            </tr>
+}
+
+            </table>
+        </div>
+    </div>
+<button class="col-md-12" style="font-size:18px;line-height:50px;text-align:center;margin-top:5%;margin-bottom:5%;color: #0ddc6a;background-color:#1261ae;width:100%;float:right;"><span id="catfishIMG"></span>@Html.ActionLink("Add Availability", "Create")</button>
+
+
+
+
+
