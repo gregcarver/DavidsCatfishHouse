@@ -3,70 +3,80 @@
 @{
     ViewBag.Title = "Delete";
 }
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <h2>Delete</h2>
 
-<h2>Delete</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>Availability</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmployeeName)
+                </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Availability</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeName)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EmployeeName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeName)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TuesdayShift)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TuesdayShift)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TuesdayShift)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TuesdayShift)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.WednesdayShift)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.WednesdayShift)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WednesdayShift)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.WednesdayShift)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ThursdayShift)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThursdayShift)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ThursdayShift)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThursdayShift)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FridayShift)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FridayShift)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FridayShift)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FridayShift)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SaturdayShift)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SaturdayShift)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SaturdayShift)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SaturdayShift)
-        </dd>
+            </dl>
 
-    </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
     }
-</div>
+}
+else
+{
+    <h1>You must be an Employee or Admin</h1>
+}

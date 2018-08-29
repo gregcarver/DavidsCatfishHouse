@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DavidsCatfishHouse.Models;
+using System.Collections.Generic;
 
 namespace DavidsCatfishHouse.Controllers
 {
@@ -17,17 +18,52 @@ namespace DavidsCatfishHouse.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            
         }
 
+
+        [HttpGet]
+        public ActionResult ChangeRole()
+        {
+            ApplicationDbContext dc = new ApplicationDbContext();
+
+            var notAdmin = dc.Users.ToList().FindAll(m => UserManager.IsInRole(m.Id, "Admin") !=true &&
+            UserManager.IsInRole(m.Id, "Employee") != true);    
+
+            
+                return View(notAdmin);
+            
+            
+        }
+        
+        public ActionResult ChangeRoleGet(string id)
+        {
+            if (id != null)
+            {
+                ApplicationDbContext dc = new ApplicationDbContext();
+                var spaghetti = dc.Users.Find(id);
+                if (spaghetti.Email != "fishbrewton@gmail.com")
+                {
+                    UserManager.AddToRole(spaghetti.Id, "Employee");
+                    dc.SaveChanges();
+                }
+                TempData["msg"] = "<script>alert('Change succesfully');</script>";
+                return RedirectToAction("ChangeRole");
+                
+            }
+            
+            return View();
+        }
         public ApplicationSignInManager SignInManager
         {
             get
@@ -142,6 +178,10 @@ namespace DavidsCatfishHouse.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            //List<SelectListItem> list = new List<SelectListItem>();
+            //foreach (var role in RoleManager.Roles)
+            //    list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
+            //ViewBag.Roles = list;
             return View();
         }
 
@@ -158,6 +198,7 @@ namespace DavidsCatfishHouse.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

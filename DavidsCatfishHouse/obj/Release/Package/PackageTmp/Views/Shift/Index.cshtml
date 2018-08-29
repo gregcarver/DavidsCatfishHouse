@@ -3,98 +3,107 @@
     ViewBag.Title = "Index";
 }
 
+<h4 style="color:#FFEBCD;margin-top:2.5%">*Admin*</h4>
 
-<div id="calender"></div>
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><span id="eventTitle"></span></h4>
-            </div>
-            <div class="modal-body" style="color: #FFEBCD;background:url(../Images/wood.jpg)">
-                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
-                    <span class="glyphicon glyphicon-remove">Remove</span>
-                </button>
-                <button id="btnEdit" class="btn btn-success btn-sm pull-right" style="margin-right:5px;">
-                    <span class="glyphicon-pencil"></span>Edit
-                </button>
-                <p id="pDetails"></p>
-            </div>
-            <div class="modal-footer" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <div id="calender"></div>
+        //Start of Modal
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                    </div>
+                    <div class="modal-body" style="color: #FFEBCD;background:url(../Images/wood.jpg)">
+                        <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                            <span class="glyphicon glyphicon-remove">Remove</span>
+                        </button>
+                        @*Edit Button*@
+                        <button id="btnEdit" class="btn btn-success btn-sm pull-right" style="margin-right:5px;">
+                            <span class="glyphicon-pencil"></span>Edit
+                        </button>
+                        <p id="pDetails"></p>
+                    </div>
+                    @*Close Button*@
+                    <div class="modal-footer" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div id="myModalSave" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Save Event</h4>
-            </div>
-            <div class="modal-body" style="background:url(../Images/wood.jpg)">
-                <form class="form-horizontal col-md-12 ">
-                    <input type="hidden" id="hdEventId" value="0" />
-                    <div class="form-group">
-                        <label>Employee</label>
-                        <input type="text" id="txtSubject" class="form-control" />
+        //Save Event of Modal
+        <div id="myModalSave" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: url('../Images/calmwater.jpg');color: #FFEBCD;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Save Event</h4>
                     </div>
-                    <div class="form-group">
-                        <label>Start of Shift</label>
-                        <div class="input-group date" id="dtp1" style="margin-left:2.65%">
-                            <input type="text" id="txtStart" class="form-group" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    @*fullday checkbox*@
-                    @*<div class="form-group">
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="ckIsFullDay" checked="checked" />Is Full Day event</label>
+                    <div class="modal-body" style="background:url(../Images/wood.jpg)">
+                        <form class="form-horizontal col-md-12 ">
+                            <input type="hidden" id="hdEventId" value="0" />
+                            <div class="form-group">
+                                <label>Employee</label>
+                                <input type="text" id="txtSubject" class="form-control" />
                             </div>
-                        </div>*@
-                    <div class="form-group">
-                        <label>End of Shift</label>
-                        <div class="input-group date" id="dtp2" style="margin-left:2.65%">
-                            <input type="text" id="txtEnd" class="form-group" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Special Instructions</label>
-                        <textarea id="txtDescription" rows="3" class="form-control"></textarea>
+                            @*Start of shift Calendar Picker*@
+                            <div class="form-group">
+                                <label>Start of Shift</label>
+                                <div class="input-group date" id="dtp1" style="margin-left:2.65%">
+                                    <input type="text" id="txtStart" class="form-group" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            @*End of Shift Calendar Picker*@
+                            <div class="form-group">
+                                <label>End of Shift</label>
+                                <div class="input-group date" id="dtp2" style="margin-left:2.65%">
+                                    <input type="text" id="txtEnd" class="form-group" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Special Instructions</label>
+                                <textarea id="txtDescription" rows="3" class="form-control"></textarea>
 
+                            </div>
+                            @*Employee Roles Colors*@
+                            <div class="form-group">
+                                <label>Employee Role</label>
+                                <select id="addThemeColor" class="form-control">
+                                    <option value="">Default</option>
+                                    <option value="red">Server</option>
+                                    <option value="orange">Hostess</option>
+                                    <option value="purple">Drive-Thru</option>
+                                    <option value="#0ddc6a">Kitchen</option>
+                                    <option value="#29CFF1">Manager</option>
+                                </select>
+                            </div>
+                            <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label>Employee Role</label>
-                        <select id="addThemeColor" class="form-control">
-                            <option value="">Default</option>
-                            <option value="red">Server</option>
-                            <option value="orange">Hostess</option>
-                            <option value="purple">Drive-Thru</option>
-                            <option value="#0ddc6a">Kitchen</option>
-                            <option value="#29CFF1">Manager</option>
-                        </select>
+                    <div class="modal-footer" style="background: url('../Images/calmwater.jpg');">
+                        @*<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>*@
                     </div>
-                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </form>
-            </div>
-            <div class="modal-footer" style="background: url('../Images/calmwater.jpg');">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-
+    }
+}
+else
+{
+    <h1>Access denied</h1>
+}
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
@@ -148,7 +157,8 @@
                 $('#calender').fullCalendar('destroy');
 
                 $('#calender').fullCalendar({
-
+                    minTime: "10:00:00",
+                    maxTime: "22:00:00",
                     contentHeight: 600,
                     defaultDate: new Date(),
                     timeFormat: 'h(:mm)a',
@@ -291,6 +301,7 @@
                 console.log(data)
                 SaveEvent(data);
 
+
             })
             function SaveEvent(data) {
                 $.ajax({
@@ -309,23 +320,6 @@
                     }
                 })
             }
-            //function SaveEvent2(data) {
-            //    $.ajax({
-            //        type: "PUT",
-            //        url: 'http://danielguelzo-001-site13.ftempurl.com/Shift/SaveEvent',
-            //        data: data,
-            //        success: function (data) {
-            //            if (data.status) {
-            //                FetchEventAndRenderCalendar();
-            //                $('#myModalSave').modal('hide');
-            //            }
-
-            //        },
-            //        error: function () {
-            //            alert('Failed');
-            //        }
-            //    })
-            //}
         })
     </script>
 }

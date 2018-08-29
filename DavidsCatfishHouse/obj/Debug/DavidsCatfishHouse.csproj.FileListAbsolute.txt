@@ -83,3 +83,5 @@ C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\Twil
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\bin\TwilioFluent.Mvc3.xml
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.Migrations.fettuci.resources
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.csproj.GenerateResource.Cache
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.Migrations.range.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Debug\DavidsCatfishHouse.Migrations.jk.resources

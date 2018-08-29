@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2 style="margin-top:10%;margin-bottom:5%; font-family:cursive;color: #FFEBCD;">Customize Availability</h2>
+<h2 style="margin-top:5%;margin-bottom:5%; font-family:cursive;color: #FFEBCD;">Customize Availability</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -61,9 +61,9 @@
                 @Html.ValidationMessageFor(model => model.SaturdayShift, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <hr />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="color: #0ddc6a; background-color:#1261ae;text-align:center;line-height:50px;font-size:24px; width:20%;margin-top:10%">
+            <div class="col-md-offset-2 col-md-10" style="color: #0ddc6a; background-color:#1261ae;text-align:center;line-height:50px;font-size:24px; width:20%;margin-top:5%">
                 <span id="catfishIMG"></span>
                 <input style="background-color:#0ddc6a;color:white;"type="submit" value="Create" class="btn btn-default" />
             </div>

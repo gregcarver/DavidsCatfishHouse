@@ -1,0 +1,143 @@
+﻿@model IEnumerable<DavidsCatfishHouse.Models.ShiftList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+@section avail{
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+
+}
+@*@if (User.IsInRole("Admin"))
+    {
+        <p style="margin-top:2.5%;">
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }*@
+<div class="row">
+    <div class="col-md-12" id="zoomControl" style="margin-top:5%;">
+
+        <table id="dataTable" class="table">
+            <thead>
+                <tr id="avTable" style="font-family:cursive;color: #FFEBCD;font-size:20px;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TuesdayShift)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WednesdayShift)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ThursdayShift)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FridayShift)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SaturdayShift)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr style="background-color:transparent; color:#FFEBCD;font-size:18px; font-family:cursive;">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.EnumDropDownListFor(modelItem => item.TuesdayShift, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                        @Html.EnumDropDownListFor(modelItem => item.WednesdayShift, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                        @Html.EnumDropDownListFor(modelItem => item.ThursdayShift, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                        @Html.EnumDropDownListFor(modelItem => item.FridayShift, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                        @Html.EnumDropDownListFor(modelItem => item.SaturdayShift, new { @disabled = "disabled" })
+                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <td>
+                        <button class="btn btn-success">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+
+
+                        <button  class="btn btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>
+
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                    </td>
+                    }
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <a href="/ShiftLists/Create" class="col-md-12" style="font-size:18px;line-height:50px;text-align:center;margin-top:5%;margin-bottom:5%;color: #0ddc6a;background-color:#1261ae;width:100%;float:right;"><span id="catfishIMG"></span>Add Shift</a>@*@Html.ActionLink("Add Availability", "Create")*@
+    <button style="position:absolute;bottom:0;left:0;"class="btn btn-danger" id="deleteAll">Delete All Shifts</button>
+
+}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+</script>
+<script>
+        // deleting
+$("#deleteAll").click(
+    function sender() {
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            type: 'Post',
+            dataType: 'json',
+            processData: false,
+            url: '@Url.Action("DeleteAll", "ShiftLists")',
+            success: function(da) {
+                if (da.Result === "Success") {
+
+                    alert("Data deleted!");
+                    window.location.reload();
+
+                } else {
+
+                    alert('Error' + da.Message);
+                }
+            },
+            error: function(da) {
+                alert('Error');
+            }
+        });
+    });
+        //$('#btnDelete2').click(function (data) {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: '/ShiftLists/DeleteShift',
+        //        data: data,
+        //        success: function (data) {
+        //              confirm("Are you sure you want to delete?")
+        //        },
+        //        error: function () {
+        //            alert('Failed');
+        //        }
+        //    })
+
+        //})
+
+</script>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DavidsCatfishHouse.Models.ApplicationUser>
+@{
+    ViewBag.Title = "ChangeRole";
+}
+<div style="display:block;margin-left:auto;margin-right:auto;font-size:16px;margin-top:10%;">
+    <table>
+        <tr>
+            <td style="color:#ffebcd">
+                @Html.DisplayNameFor(model => model.Email)
+            </td>
+        </tr>
+
+        <tbody style="color:#ffebcd">
+
+            @foreach (var i in Model)
+    {
+
+        <tr>
+            <td>
+
+                @Html.Hidden("fishbrewton@gmail.com")
+
+                @Html.DisplayFor(modelItem => i.Email)
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <span style="float:right;"> @Html.ActionLink("Upgrade to Employee", "ChangeRoleGet", "Account", new { id = i.Id }, null)</span>
+
+            </td>
+        </tr>
+
+}
+            @Html.Raw(TempData["msg"])
+        </tbody>
+
+    </table>
+</div>

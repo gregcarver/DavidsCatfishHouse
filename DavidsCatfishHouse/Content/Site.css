@@ -3,7 +3,7 @@
     padding-bottom: 20px;
     background-image: url('../Images/calmwater.jpg');
     
-    font-family: cursive;
+    /*font-family: cursive;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,13 +28,13 @@ textarea {
 
 .navbar-inverse .navbar-brand {
     color: #FFEBCD;
-    font-size: 26px;
-    font-family: cursive;
+    font-size: 20px;
+    
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #FFEBCD;
-    font-size: 22px;
-    font-family:  cursive;
+    font-size: 18px;
+    
 }
 #shiftBtn {
     margin-top: 3%;

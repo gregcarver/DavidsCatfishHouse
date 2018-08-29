@@ -36,5 +36,7 @@ namespace DavidsCatfishHouse.Models
 
         public System.Data.Entity.DbSet<DavidsCatfishHouse.Models.ShiftChange> ShiftChanges { get; set; }
         public DbSet<Event> Events { get; set; }
+
+        public System.Data.Entity.DbSet<DavidsCatfishHouse.Models.ShiftList> ShiftLists { get; set; }
     }
 }

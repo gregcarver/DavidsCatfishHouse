@@ -83,3 +83,9 @@ C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Rele
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csprojResolveAssemblyReference.cache
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.fettuci.resources
 C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csproj.GenerateResource.Cache
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.range.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.jk.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.csproj.CopyComplete
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.ShiftListMigration.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.ShiftChangeEnum.resources
+C:\Users\Greg Carver\source\repos\DavidsCatfishHouse\DavidsCatfishHouse\obj\Release\DavidsCatfishHouse.Migrations.fixedmodel.resources

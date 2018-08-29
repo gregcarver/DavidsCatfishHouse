@@ -10,18 +10,23 @@ using Twilio.Types;
 using Twilio.TwiML;
 using Twilio.AspNet.Mvc;
 using DavidsCatfishHouse.Models;
-
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace DavidsCatfishHouse.Controllers
-{
+{        
+    //[Authorize]
     public class ShiftController : TwilioController
     {
         // GET: Shift
+        //[Authorize(Roles = "SuperUser")]
+        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Employee")]
         public ActionResult Index()
         {
             return View();
         }
-        
+
         public JsonResult GetShifts()
         {
             using(ApplicationDbContext dc = new ApplicationDbContext())
@@ -31,6 +36,7 @@ namespace DavidsCatfishHouse.Controllers
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public JsonResult SaveEvent(Event e)
@@ -68,8 +74,9 @@ namespace DavidsCatfishHouse.Controllers
             
             return new JsonResult { Data = new { status = status } };
         }
-        [Authorize(Roles = "Admin")]
+        
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public JsonResult DeleteEvent(int Id)
         {
             var status = false;
@@ -85,31 +92,10 @@ namespace DavidsCatfishHouse.Controllers
             }
                 return new JsonResult { Data = new { status = status } };
         }
-        
-        //public ActionResult SendSms(Event e)
-        //{
 
 
-        //    var accountSid = "AC114e1e5fbd21555dbc648c31da2f0e9f";
-        //    var authToken = "731d19eae9e531540d696ff443d3ed91";
-        //    TwilioClient.Init(accountSid, authToken);
 
-        //    var to = new PhoneNumber("+18456084783");
-        //    var from = new PhoneNumber("+12512415058");
 
-        //    var message = MessageResource.Create(
 
-        //        to: to,
-        //        from: from,
-        //        body: "The work scheduled has been updated please check the calendar"
-        //        );
-        //    return Content(message.Sid);
-        //}
-        //public ActionResult ReceiveSms()
-        //{
-        //    var response = new MessagingResponse();
-        //    response.Message("The dogs are hairy");
-        //    return TwiML(response);
-        //}
     }
 }

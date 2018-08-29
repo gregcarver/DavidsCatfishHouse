@@ -22,11 +22,11 @@ namespace DavidsCatfishHouse
             var roleAdminRole = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var roleAdminUser = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            if (!roleAdminRole.RoleExists("SuperUser"))
+            if (!roleAdminRole.RoleExists("Admin"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
 
-                role.Name = "SuperUser";
+                role.Name = "Admin";
                 roleAdminRole.Create(role);
                 var user = new ApplicationUser();
                 user.Email = "fishbrewton@gmail.com";
@@ -35,8 +35,15 @@ namespace DavidsCatfishHouse
 
                 if (chkUser.Succeeded)
                 {
-                    var result1 = roleAdminUser.AddToRole(user.Id, "SuperUser");
+                    var result1 = roleAdminUser.AddToRole(user.Id, "Admin");
                 }
+            }
+            if (!roleAdminRole.RoleExists("Employee"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Employee";
+                roleAdminRole.Create(role);
+
             }
         }
     }

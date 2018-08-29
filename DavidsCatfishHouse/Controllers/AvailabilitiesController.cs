@@ -59,6 +59,7 @@ namespace DavidsCatfishHouse.Controllers
         }
 
         // GET: Availabilities/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +79,7 @@ namespace DavidsCatfishHouse.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,EmployeeName,TuesdayShift,WednesdayShift,ThursdayShift,FridayShift,SaturdayShift")] Availability availability)
         {
             if (ModelState.IsValid)
@@ -90,6 +92,7 @@ namespace DavidsCatfishHouse.Controllers
         }
 
         // GET: Availabilities/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +110,7 @@ namespace DavidsCatfishHouse.Controllers
         // POST: Availabilities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Availability availability = db.Availabilities.Find(id);

@@ -77,11 +77,26 @@
     {
         if (User.IsInRole("Admin"))
         {
-                    <li>@Html.ActionLink("Admin Calendar", "Index", "Shift")</li>   
+                <li>@Html.ActionLink("Admin", "Index", "Shift")</li>
 }
 }
-                    @*<li>@Html.ActionLink("Calendar", "Index", "Shift")</li>*@
-                    <li>@Html.ActionLink("Availabilities", "Index", "Availabilities")</li>
+                    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+                <li>@Html.ActionLink("Approve User", "ChangeRole", "Account")</li>
+}
+}
+                    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+        {
+                <li>@Html.ActionLink("Availabilities", "Index", "Availabilities")</li>
+                <li>@Html.ActionLink("Shift List", "Index", "ShiftLists")</li>
+}
+}
+                @*<li>@Html.ActionLink("Calendar", "Index", "Shift")</li>*@
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
