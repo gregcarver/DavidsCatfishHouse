@@ -223,7 +223,6 @@
     <Compile Include="Controllers\ShiftChangesController.cs" />
     <Compile Include="Controllers\ShiftController.cs" />
     <Compile Include="Controllers\ShiftListsController.cs" />
-    <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
